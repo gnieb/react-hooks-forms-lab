@@ -1,11 +1,22 @@
 import React from "react";
-// import { v4 as uuid } from "uuid";
+import { v4 as uuid } from "uuid";
 
 function ItemForm({onItemFormSubmit, itemName, handleItemName, handleItemCategory, itemCategory}) {
 
 
+  function handleFormSubmit (e) {
+    e.preventDefault();
+    onItemFormSubmit(newItem)
+  }
+
+  const newItem = {
+    id: uuid(), 
+    name: itemName,
+    category: itemCategory,
+  }
+
   return (
-    <form onSubmit ={onItemFormSubmit} className="NewItem">
+    <form onSubmit ={handleFormSubmit} className="NewItem">
       <label>
         Name:
         <input onChange={handleItemName}type="text" name="name" value={itemName} />

@@ -18,22 +18,11 @@ function ShoppingList({ items, setItems }) {
     setItemCategory(e.target.value)
   }
  
-  function handleNewItem (item) {
+  function onItemFormSubmit (item) {
   setItems([...items, item])
+  setItemName("")
+  setItemCategory("")
 }
-
-  function onItemFormSubmit (e) {
-    e.preventDefault();
-    console.log('form submitted!!!!!')
-    const newItem = {
-      id: uuid(), 
-      name: itemName,
-      category: itemCategory,
-    }
-    handleNewItem(newItem)
-    setItemName("")
-    setItemCategory("")
-  }
 
   function handleCategoryChange(event) {
     setSelectedCategory(event.target.value);
@@ -51,7 +40,7 @@ function ShoppingList({ items, setItems }) {
       return item.category === selectedCategory;}
       
   });
-console.log(itemsToDisplay)
+
 const searchResults = itemsToDisplay.filter(item => {
   return item.name.includes(searchQuery) ||
     item.name===(searchQuery)
